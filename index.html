@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remote Control</title>
+<style>
+    .remote {
+        width: 200px;
+        height: 300px;
+        background-color: #000000;
+    border: 2px solid #ccc;
+    color: white;
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 200px;
+    margin-left: 600px;
+    }
+
+  body{
+    background-image: url(background.png);
+    background-size: cover;
+  }
+
+    .switch {
+        position: relative;
+        width: 80px;
+        height: 40px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .switch::before {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 34px;
+        height: 34px;
+        background-color: white;
+        border-radius: 50%;
+        transition: transform 0.3s;
+    }
+
+    .switch-on::before {
+        transform: translateX(36px);
+    }
+
+    .torch {
+        width: 100px;
+        height: 100px;
+        background-color: #000;
+        border-radius: 50%;
+    }
+</style>
+</head>
+<body>
+
+<div class="remote">
+    <button class="switch" onclick="toggleTorch()">
+    </button>
+    <span id="switchText">Turn On</span> 
+    <div class="torch" id="torch"></div>
+</div>
+
+<script>
+    let torchOn = false;
+    const switchButton = document.querySelector('.switch');
+    const switchText = document.getElementById('switchText');
+    
+    function toggleTorch() {
+        const torch = document.getElementById('torch');
+        torchOn = !torchOn;
+        if (torchOn) {
+            torch.style.backgroundColor = "#ff9900";
+            switchButton.classList.add('switch-on');
+            switchText.textContent = 'Turn Off';
+        } else {
+            torch.style.backgroundColor = "#000";
+            switchButton.classList.remove('switch-on');
+            switchText.textContent = 'Turn On';
+        }
+    }
+</script>
+
+</body>
+</html>
